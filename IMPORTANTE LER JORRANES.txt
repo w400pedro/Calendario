@@ -1,0 +1,48 @@
+Cara eu meio que copiei o do zap fast e movi pra ca 
+entao a principio os routes e controllers ai ta tudo configurado
+só os nomes dos arquivos q tao errados mas safe, o banco de dados eu ja conectei ao banco certo e ja fiz alguns inserts nele
+
+o nome dos arquivos e bla bla eu arrumo depois
+é só tu reaproveitar esse esboço do zap fast e fazer alguma das coisas q ele pede
+a gnt faz em aula mais algumas coisas tbm
+
+EU JA INSERI ALGUNS TIMES E TALS, COMEÇA PELO BASICO, FZR TELA DE CADASTRAR USUARIO E TIME E BLA BLA (SÓ REAPROVEITAR O DO ZAP FAST)
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+TRABALHO BASE
+    CADASTRO DE USUÁRIOS
+        NOME
+        SENHA
+        EMAIL
+        IMAGEM DE PERFIL (UPLOAD)
+        DATA DE CRIACAO
+
+    CADASTRO DE TIMES
+        NOME
+        DESCRICAO
+        LISTA DE PARTICIPANTES
+        RESPONSÁVEL PELO TIME
+        DATA COM HORA DE ADIÇÃO DE CADA UM DOS PARTICIPANTES
+
+
+    AGENDA COMPARTILHADA ENTRE USUÁRIOS (INDIVIDUAL)
+        OS USUÁRIOS DEVEM TER ACESSO A AGENDA DE OUTROS USUARIOS
+
+    INVITE PARA PARTICIPAR DE TIMES (APENAS O CRIADOR DO TIME)
+        DEVE PERMITIR O CONVITE DE UM USUÁRIO JÁ CRIADO PARA UM TIME
+        ** TRABALHOS EM TRIOS, DEVEM PERMITIR QUE UM USUÁRIO NAO CRIADO SEJA CONVIDADO PELO EMAIL
+
+    ALOCAÇÃO DE HORÁRIOS NA AGENDA
+        IMPORTANTE NAO DEIXAR MARCAR EM HORÁRIOS JÁ ALOCADOS
+        QUEM SOLICITOU (DEVE SER MEMBRO DO TIME E ALOCAR TODO TIME)
+        DATA E HORA AGENDADA (DENTRO DOS HORÁRIOS ÚTEIS, 8 AS 16, APENAS DIAS DE SEMANA)
+
+    VISUALIZACAO DA AGENDA
+        O SISTEMA DEVE APRESENTAR AGENDA POR USUÁRIO OU POR EMPRESA DE FORMA QUE PERMITA A FÁCIL VISUALIZAÇÃO DAS INFORMAÇÕES
+
+
+ATENÇÃO - TRABALHO EM DUPLA
+    O SISTEMA DEVE PERMITIR O CADASTRO DE EMPRESAS E PARA CADA EMPRESA SEUS TIMES
+    AGENDA COMPARTILHADA ENTRE USUÁRIOS DE UMA EMPRESA
