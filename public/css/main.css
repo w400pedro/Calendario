@@ -47,6 +47,10 @@ html {
     border-radius: 50%;
 }
 
+#empresa{
+    height: 33px;
+}
+
 #init-msg {
     display: inline;
     color: rgb(65, 63, 63);

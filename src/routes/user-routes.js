@@ -16,10 +16,3 @@ routes.post('/login', UserMasterController.UserLogin);
 routes.post('/register', UserMasterController.UserRegister);
 
 module.exports = routes;
-
-
-
-
-
-
-

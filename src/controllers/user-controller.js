@@ -41,7 +41,7 @@ class UserController {
         if (usuarioEncontrado.senha == senha) {
             req.session.user = usuarioEncontrado;
             console.log('Logado com Sucesso')
-            return res.redirect('/register'); // original: return res.redirect('/');
+            return res.redirect('/group/time'); // original: return res.redirect('/');
 
         } else {
             return res.send('Senha Errada');

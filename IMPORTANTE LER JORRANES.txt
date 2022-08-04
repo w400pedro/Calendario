@@ -1,14 +1,3 @@
-Cara eu meio que copiei o do zap fast e movi pra ca 
-entao a principio os routes e controllers ai ta tudo configurado
-só os nomes dos arquivos q tao errados mas safe, o banco de dados eu ja conectei ao banco certo e ja fiz alguns inserts nele
-
-o nome dos arquivos e bla bla eu arrumo depois
-é só tu reaproveitar esse esboço do zap fast e fazer alguma das coisas q ele pede
-a gnt faz em aula mais algumas coisas tbm
-
-EU JA INSERI ALGUNS TIMES E TALS, COMEÇA PELO BASICO, FZR TELA DE CADASTRAR USUARIO E TIME E BLA BLA (SÓ REAPROVEITAR O DO ZAP FAST)
-
-
 -----------------------------------------------------------------------------------------------------------------------------------
 
 TRABALHO BASE
@@ -25,7 +14,6 @@ TRABALHO BASE
         LISTA DE PARTICIPANTES
         RESPONSÁVEL PELO TIME
         DATA COM HORA DE ADIÇÃO DE CADA UM DOS PARTICIPANTES
-
 
     AGENDA COMPARTILHADA ENTRE USUÁRIOS (INDIVIDUAL)
         OS USUÁRIOS DEVEM TER ACESSO A AGENDA DE OUTROS USUARIOS
