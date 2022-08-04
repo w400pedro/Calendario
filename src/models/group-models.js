@@ -16,6 +16,22 @@ class Group {
     }
 }
 
+class time {
+    constructor(id, nome, descricao, dono) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.dono = dono;
+    }
+}
+
+class empresa {
+    constructor(id, nome) {
+        this.id = id;
+        this.nome = nome;
+    }
+}
+
 class GroupDAO {
     static async GroupEnter(groupuser){        
         const groupvalues = [groupuser.usuario, groupuser.grupo, groupuser.tipo];     
@@ -35,6 +51,30 @@ class GroupDAO {
         return grupo;
 
     }
+
+    static async RegisterTime(empresa) {
+        const sql = 'INSERT INTO public.time (nome, descricao, dono, empresa) VALUES ($1, $2, $3, $4);';
+        const timevalues = [empresa.nome, empresa.descricao, empresa.dono, 1]; //fazer escolhber a empresa
+        try {
+            await db.query(sql, timevalues);
+        } catch (error) {
+            console.log('NAO FOI POSSIVEL CADASTRAR O USUÁRIO');
+            console.log({ error });
+        }
+    }
+
+    static async RegisterEmpresa(empresa) {
+        const sql = 'INSERT INTO public.empresa (nome) VALUES ($1);';
+        const empresavalues = [empresa.nome];
+        try {
+            await db.query(sql, empresavalues);
+        } catch (error) {
+            console.log('NAO FOI POSSIVEL CADASTRAR O USUÁRIO');
+            console.log({ error });
+        }
+    }
+
+    
 
     static async GroupValidation(nome) {
         const sql = 'SELECT * FROM grupo where nome = $1';
@@ -183,5 +223,7 @@ class GroupDAO {
 module.exports = {
     GroupUser,
     Group,
+    time,
+    empresa,
     GroupDAO 
 };

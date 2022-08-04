@@ -11,11 +11,11 @@ class UserController {
     }
 
     async UserRegister(req, res) {
-        const { nome, nascimento, email, senha } = req.body;
+        const { nome, email, senha } = req.body;
 
         const usuarioEncontrado = await UserDAO.UserValidation(email);
         if (usuarioEncontrado) return res.send('Email ja existente <a href="/">Voltar</a>');
-        const user = new Users(null, nome, nascimento, email, senha);
+        const user = new Users(null, nome, email, senha);
         await UserDAO.Register(user);
         return res.redirect('/login.html');
     }
@@ -41,7 +41,7 @@ class UserController {
         if (usuarioEncontrado.senha == senha) {
             req.session.user = usuarioEncontrado;
             console.log('Logado com Sucesso')
-            return res.redirect('/');
+            return res.redirect('/register'); // original: return res.redirect('/');
 
         } else {
             return res.send('Senha Errada');

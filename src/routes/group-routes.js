@@ -21,4 +21,8 @@ routes2.post('/create', GroupMasterController.RegisterGroup);
 
 routes2.post("/sendmessage", GroupMasterController.EnviarTexto);
 
+routes2.post('/register', GroupMasterController.RegisterTime);
+
+routes2.post('/registerEmpresa', GroupMasterController.RegisterEmpresa);
+
 module.exports = routes2;

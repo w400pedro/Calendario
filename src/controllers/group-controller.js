@@ -1,5 +1,5 @@
 const { db } = require('../config/db-connection');
-const { GroupUser, Group, GroupDAO } = require('../models/group-models');
+const { GroupUser, Group, GroupDAO, time, empresa } = require('../models/group-models');
 const { UserDAO } = require('../models/user-models');
 
 class GroupController {
@@ -20,6 +20,24 @@ class GroupController {
             res.redirect('/')
         }
     } 
+
+    async RegisterTime(req, res) {
+        const { nome, descricao} = req.body;
+        
+        const dono = req.session.user.id
+
+        const empresa = new time(null, nome, descricao, dono);
+        await GroupDAO.RegisterTime(empresa);
+        return res.redirect('/login.html');
+    }
+
+    async RegisterEmpresa(req, res) {
+        const { nome} = req.body;
+
+        const empresas = new empresa(null, nome);
+        await GroupDAO.RegisterEmpresa(empresas);
+        return res.redirect('/login.html');
+    }
 
     async RegisterGroup(req, res) {
         const usuariologado = req.session.user;

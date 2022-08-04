@@ -1,10 +1,9 @@
 const { db } = require("../config/db-connection");
 
 class Users {
-    constructor(id, nome, nascimento, email, senha) {
+    constructor(id, nome, email, senha) {
         this.id = id;
         this.nome = nome;
-        this.nascimento = nascimento;
         this.email = email;
         this.senha = senha;
     }
@@ -20,8 +19,8 @@ class UserDAO {
     }
 
     static async Register(user) {
-        const sql = 'INSERT INTO public.usuario (nome, nascimento, email, senha) VALUES ($1, $2, $3, $4);';
-        const uservalues = [user.nome, user.nascimento, user.email, user.senha];
+        const sql = 'INSERT INTO public.usuario (nome, email, senha) VALUES ($1, $2, $3);';
+        const uservalues = [user.nome, user.email, user.senha];
         try {
             await db.query(sql, uservalues);
         } catch (error) {
