@@ -7,9 +7,7 @@ class GroupController {
 
     async RegisterTime(req, res) {
         const { empresa ,nome, descricao } = req.body;
-        console.log(req.body)
         const dono = req.session.user.id
-        console.log('TESTEEEEEEEEEE' + empresa);
         const criatime = new time(null, nome, descricao, dono, empresa);
         await GroupDAO.RegisterTime(criatime);
         return res.redirect('/login.html');
@@ -21,6 +19,14 @@ class GroupController {
         const empresas = new EMPRESA(null, nome);
         await GroupDAO.RegisterEmpresa(empresas);
         return res.redirect('/login.html',);
+    }
+
+    async RegisterMember(req, res) {
+        const { time, email } = req.body;
+        const id = await UserDAO.idByEmail(email);
+        console.log(id)
+        await GroupDAO.RegisterMember(id, time);
+        return res.redirect('/user/invitar',);
     }
 
     async showTime(req, res) {

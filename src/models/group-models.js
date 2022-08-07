@@ -45,6 +45,17 @@ class GroupDAO {
         }
     }
 
+    static async RegisterMember(user, time) {
+        const sql = 'INSERT INTO public.participantes (usuario, time) VALUES ($1, $2);';
+        const values = [user, time];
+        try {
+            await db.query(sql, values);
+        } catch (error) {
+            console.log('NAO FOI POSSIVEL CADASTRAR O USUÁRIO');
+            console.log({ error });
+        }
+    }
+
     static async RegisterEmpresa(empresa) {
         const sql = 'INSERT INTO public.empresa (nome) VALUES ($1);';
         const empresavalues = [empresa.nome];

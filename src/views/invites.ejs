@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<%-include('includes/head.ejs')%>
+<body>
+<%-include('includes/navbar.ejs')%>
+
+    <div class="container"> 
+            <img class="logo" src="https://uploads.turbologo.com/uploads/design/hq_preview_image/3581923/draw_svg20210701-9240-mk6jlu.svg.png" alt="Logo" />
+            <p id="logo-name" class="logo-name"></p>
+            <% convites.forEach(convite=> { %>
+            <h3 style="text-align:center">Convite para a equipe <%= convite.nome%>
+            <a href="/user/inviteAccept/<%=convite.time%>" class="btn btn-primary">Entrar</a>
+            <a href="/user/inviteDeclined/<%=convite.time%>" class="btn btn-primary">Recusar</a>
+            </h3>
+            
+            <%})%>
+    </div>
+</body>
+</html>

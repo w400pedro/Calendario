@@ -28,5 +28,7 @@ routes2.post('/register', GroupMasterController.RegisterTime);
 
 routes2.post('/registerEmpresa', GroupMasterController.RegisterEmpresa);
 
+routes2.post('/teamMember', GroupMasterController.RegisterMember);
+
 
 module.exports = routes2;

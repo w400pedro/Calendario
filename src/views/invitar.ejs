@@ -6,22 +6,21 @@
 
     <div class="container"> 
         <div class="card card-container">
-             <h3 id="init-msg">Cadastro De Time: </h3>
             <img class="logo" src="https://uploads.turbologo.com/uploads/design/hq_preview_image/3581923/draw_svg20210701-9240-mk6jlu.svg.png" alt="Logo" />
             <p id="logo-name" class="logo-name"></p>
-            <form class="form-signin" action="/group/register" method="POST" name="form">
+            <form class="form-signin" action="/group/teamMember" method="POST" name="form">
                 <span id="reauth-email" class="reauth-email"></span>
               
-              <label for="time">A qual empresa pertence o time? </label>
-              <select name="empresa" id="empresa" class="form-control">
+              <label for="time">A qual time deseja adicionar alguem</label>
+              <select name="time" id="time" class="form-control">
                 <% times.forEach(time=> { %>
                 <option value="<%=time.id%>"><%=time.nome%></option>
                 <%})%>
                 </select>
                 <br>
-                <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome" required autofocus>
+                <label for="time">Email da pessoa</label>
                 <br>
-                <input type="text" name="descricao" id="descricao" class="form-control" placeholder="Descrição" required autofocus>
+                <input type="email" name="email" id="email" class="form-control" placeholder="jorgelucas@gmail.com" required autofocus>
                 <input class="btn btn-lg btn-primary btn-block btn-signin" type="submit" value="CADASTRAR">
             </form>
         </div>
