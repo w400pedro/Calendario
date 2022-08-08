@@ -53,6 +53,14 @@ class UserDAO {
         return usuario;
     }
 
+
+    static async UserValidationID(usuario) {
+        const sql = 'SELECT * FROM usuario where id = $1';
+        const result = await db.query(sql, [usuario]);
+        const userinfo = result.rows;
+        return userinfo;
+    }
+
     static async Register(user) {
         const sql = 'INSERT INTO public.usuario (nome, email, senha) VALUES ($1, $2, $3);';
         const uservalues = [user.nome, user.email, user.senha];

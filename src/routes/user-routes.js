@@ -17,6 +17,8 @@ routes.post('/register', UserMasterController.UserRegister);
 
 routes.get('/invites', UserMasterController.ShowInvites);
 
+routes.get('/agenda', UserMasterController.Showagenda);
+
 routes.get('/invitar', UserMasterController.ShowInvitar);
 
 routes.get('/inviteAccept/:id', UserMasterController.inviteAccept);

@@ -4,6 +4,18 @@ const { GroupDAO } = require('../models/group-models');
 
 class UserController {
 
+    async Showagenda(req, res) {
+        usuariologado = req.session.user.id;
+        const catchuserlogado = await UserDAO.UserValidationID(usuario);
+        if(req.params['id']){
+        const usuario = req.params['id'];
+        const catchuser = await UserDAO.UserValidationID(usuario);
+        return res.render('calendario', { user: catchuser, logado: catchuserlogado })
+        }
+
+        return res.render ('calendario', { logado: catchuserlogado }) //mandando o usuario logado, precisa pegar as informações dele la
+    }
+
     async inviteAccept(req, res) {
         const time = req.params['id']
         const user = req.session.user.id
@@ -28,7 +40,7 @@ class UserController {
     async ShowInvites(req, res) {
         const usuarioconvidado = req.session.user.id
         const convites = await UserDAO.InviteSearch(usuarioconvidado);
-        return res.render('invites', { convites: convites})
+        return res.render('invites', { convites: convites })
     }
 
     async ShowInvitar(req, res) {
@@ -48,7 +60,7 @@ class UserController {
         return res.redirect('/login.html');
     }
 
-    async UserLogout(req, res){
+    async UserLogout(req, res) {
         const userLogado = req.session.user;
         if (userLogado) {
             req.session.user = ''
@@ -73,36 +85,9 @@ class UserController {
 
         } else {
             return res.send('Senha Errada');
-        } 
-
-    }
-
-    async ShowGroupsMain(req, res) {
-        const usuariologado = req.session.user;
-        if (usuariologado) {
-            const usuario = req.session.user.id;
-            const usuarionogrupo = await GroupDAO.GroupSelect(usuario);
-            const result = await db.query('SELECT * from(SELECT grupo, texto, datamsg, ROW_NUMBER() OVER(PARTITION BY grupo ORDER BY ID DESC) rn FROM mensagem ORDER BY datamsg DESC)as UMesangem WHERE rn=1 ;');
-            if (req.params.id) {
-                let { page } = req.query;
-                if (!page) { page = 1 }
-                const limit = 10;
-                const offset = limit * (page - 1);
-                const grupomembros = req.params.id;
-                req.session.grupo = grupomembros;
-                const rolev = [usuario, grupomembros];
-                const role = await UserDAO.CatchRole(rolev);
-                const selectv = [grupomembros ,limit, offset];   
-                const grupo = await GroupDAO.SearchGroup(grupomembros, null, null);
-                const chat = await GroupDAO.GroupMensagem(selectv);
-                const chatexibido = chat[0]; 
-                const total = chat[1];
-                res.render('chat', { grupos: usuarionogrupo, mensagem: result.rows, grupoclicado: grupo, chat: chatexibido, usuario: usuario, cargo: role.tipo, total, page })
-            } else
-                res.render('chat', { grupos: usuarionogrupo, mensagem: result.rows, grupoclicado: null, cargo: null })
-        } else {
-            res.redirect('/login.html')
         }
+
     }
+
 }
 module.exports = { UserController };
