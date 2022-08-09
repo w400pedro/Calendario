@@ -19,6 +19,14 @@ class UserDAO {
         return times;
     }
 
+    async UserEmpresa(empresaselecionada){
+        const sql = "select * from empresa where id = $1"
+        const values = [empresaselecionada]
+        const result = await db.query(sql, values);
+        const empresa = result.rows
+        return empresa
+    }
+
     static async idByEmail(email) {
         const sql = "Select id from usuario where email = $1"
         const values = [email];
@@ -61,6 +69,8 @@ class UserDAO {
         return userinfo;
     }
 
+
+
     static async Register(user) {
         const sql = 'INSERT INTO public.usuario (nome, email, senha) VALUES ($1, $2, $3);';
         const uservalues = [user.nome, user.email, user.senha];
@@ -71,14 +81,6 @@ class UserDAO {
             console.log({ error });
         }
     }
-
-        static async CatchRole(rolev){
-        const roleoficial = [rolev[0], rolev[1]];
-        const sql = 'SELECT tipo FROM grupousuario where usuario = $1 and grupo = $2';
-        const result = await db.query(sql, roleoficial);
-        const role = result.rows[0];
-        return role;
-     } 
 }
 
 module.exports = {

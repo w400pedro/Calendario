@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<%-include('includes/head.ejs')%>
+    <%-include('includes/navbar.ejs')%>
+
+    <h4><a href="/user/agendar">Agendar novo compromisso</a></h4>
+
+    <form action="/user/agendausuario" action="GET">
+        <label>Procurar pela agenda de outro usuário: </label><input type="email"  placeholder="Digite o email do usuário">
+        <input type="submit" value="Procurar">
+    </form>
+
+        <h2>Seja bem-vindo a sua agenda <%=logado.nome%>
+        </h2>
+<div class="compromissos">
+        <h4>Seus dias de compromisso:
+            <% agenda.forEach(compromisso=> { %>
+                <% let data = compromisso.dia; let dataamericana = (data.getFullYear() + "-" + ((data.getMonth() + 1)) + "-" + (data.getDate() )); let datafinal = dataamericana.split('-').reverse().join('/'); %>
+                <h4><%=compromisso.descricao%> no dia  <%=datafinal%></h4>
+                <% }) %>
+        </h4>
+    </div>  
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<%-include('includes/head.ejs')%>
+<body>
+<%-include('includes/navbar.ejs')%>
+
+    <div class="container"> 
+        <div class="card card-container">
+            <img class="logo" src="https://i.pinimg.com/474x/44/ed/83/44ed833bcbf970f0408d03618fa6be02.jpg" alt="Logo" />
+            <p id="logo-name" class="logo-name"></p>
+            <form class="form-signin" action="/user/registraevento" method="POST" name="form">
+                <span id="reauth-email" class="reauth-email"></span>
+              
+              <label for="time">Você tem compromisso em qual time?</label>
+              <select name="time" id="time" class="form-control" style="height: 35px;">
+                <% times.forEach(time=> { %>
+                <option value="<%=time.timeid%>"><%=time.timenome%></option>
+                <%})%>
+                </select>
+                <br>
+                <label for="descricao">Descrição do compromisso</label>
+                <br>
+                <input type="text" id="descricao" name="descricao" class="form-control" required autofocus>
+                <label for="data">Dia do compromisso:</label>
+                <input type="date" id="data" name="data">
+                <input class="btn btn-lg btn-primary btn-block btn-signin" type="submit" value="CADASTRAR">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

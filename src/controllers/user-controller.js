@@ -1,19 +1,50 @@
 const { db } = require('../config/db-connection');
 const { Users, UserDAO } = require('../models/user-models');
-const { GroupDAO } = require('../models/group-models');
+const { GroupDAO, agenda } = require('../models/group-models');
 
 class UserController {
 
-    async Showagenda(req, res) {
-        usuariologado = req.session.user.id;
-        const catchuserlogado = await UserDAO.UserValidationID(usuario);
-        if(req.params['id']){
-        const usuario = req.params['id'];
-        const catchuser = await UserDAO.UserValidationID(usuario);
-        return res.render('calendario', { user: catchuser, logado: catchuserlogado })
+    async MinhaAgenda(req, res) {
+        const existeusuariologado = req.session.user;
+        if (existeusuariologado) {
+            const usuariologado = req.session.user.id;
+            const catchuserlogado = await UserDAO.UserValidationID(usuariologado);
+            const agenda = await GroupDAO.CatchAgenda(usuariologado);
+            return res.render('minhaagenda', { logado: catchuserlogado[0], agenda: agenda });
         }
+        return res.redirect('/login.html')
+    }
 
-        return res.render ('calendario', { logado: catchuserlogado }) //mandando o usuario logado, precisa pegar as informações dele la
+    async FazerAgendamento(req, res) {
+        const existeusuariologado = req.session.user;
+        if (existeusuariologado) {
+            const usuariologado = req.session.user.id;
+            const times = await GroupDAO.CatchTime(usuariologado);
+            console.log(times[0]);
+            return res.render('agendar', {times: times})
+        }
+        return res.redirect('/login.html')
+    }
+
+    async ShowagendaEmpresa(req, res) {
+        empresaselecionada = req.params['empresa'];
+        const catchempresa = await UserDAO.UserEmpresa(empresaselecionada);
+        return res.render('calendario', { empresa: catchempresa })
+    }
+
+    async RegistraEvento(req,res){
+        const existeusuariologado = req.session.user;
+        if (existeusuariologado) {
+            const usuariologado = req.session.user.id;
+            const { time, descricao, data } = req.body;
+            console.log(time)
+            console.log(descricao)
+            console.log(data)
+            const agendamento = new agenda(null, time, descricao, data, usuariologado);
+            await GroupDAO.RegisterAgendamento(agendamento);
+            return res.redirect('/')
+        }
+        return res.redirect('/login.html')
     }
 
     async inviteAccept(req, res) {
@@ -81,8 +112,7 @@ class UserController {
         if (usuarioEncontrado.senha == senha) {
             req.session.user = usuarioEncontrado;
             console.log('Logado com Sucesso')
-            return res.redirect('/group/time'); // original: return res.redirect('/');
-
+            return res.redirect('/');
         } else {
             return res.send('Senha Errada');
         }

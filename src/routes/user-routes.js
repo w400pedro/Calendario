@@ -5,19 +5,21 @@ const { UserController } = require('../controllers/user-controller');
 
 const UserMasterController = new UserController();
 
-//routes.get('/logout', UserMasterController.UserLogout);
-
-//routes.get('/', UserMasterController.ShowGroupsMain);
-
-//routes.get('/:id', UserMasterController.ShowGroupsMain);
+routes.get('/logout', UserMasterController.UserLogout);
 
 routes.post('/login', UserMasterController.UserLogin);
 
 routes.post('/register', UserMasterController.UserRegister);
 
+routes.post('/registraevento', UserMasterController.RegistraEvento);
+
+routes.get('/', UserMasterController.MinhaAgenda);
+
 routes.get('/invites', UserMasterController.ShowInvites);
 
-routes.get('/agenda', UserMasterController.Showagenda);
+routes.get('/agenda/:id', UserMasterController.ShowagendaEmpresa);
+
+routes.get('/agendar', UserMasterController.FazerAgendamento);
 
 routes.get('/invitar', UserMasterController.ShowInvitar);
 
