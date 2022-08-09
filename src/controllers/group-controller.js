@@ -10,21 +10,25 @@ class GroupController {
         const dono = req.session.user.id
         const criatime = new time(null, nome, descricao, dono, empresa);
         await GroupDAO.RegisterTime(criatime);
-        return res.redirect('/login.html');
+        const sql = 'Select id from time where dono = $1 order by id desc limit 1;';
+        const timevalues = [dono]; 
+        const result = await db.query(sql, timevalues);
+        const info = result.rows;
+        const timeid = info[0].id
+        await GroupDAO.RegisterMember(dono, timeid);
+        return res.redirect('/user');
     }
 
     async RegisterEmpresa(req, res) {
         const { nome } = req.body;
-
         const empresas = new EMPRESA(null, nome);
         await GroupDAO.RegisterEmpresa(empresas);
-        return res.redirect('/login.html',);
+        return res.redirect('/user',);
     }
 
     async RegisterMember(req, res) {
         const { time, email } = req.body;
         const id = await UserDAO.idByEmail(email);
-        console.log(id)
         await GroupDAO.RegisterMember(id, time);
         return res.redirect('/user/invitar',);
     }

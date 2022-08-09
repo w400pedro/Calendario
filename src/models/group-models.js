@@ -89,7 +89,8 @@ class GroupDAO {
 
     static async CatchTime(usuariologado) {
         const sql = 'SELECT time.id as timeid, time.nome as timenome FROM time join participantes on participantes.time = time.id join usuario on usuario.id = participantes.usuario where usuario.id = $1';
-        const result = await db.query(sql, [usuariologado]);
+        const values = [usuariologado]
+        const result = await db.query(sql, values);
         const info = result.rows;
         console.log(info.rows);
         return info;

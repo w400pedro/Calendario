@@ -13,6 +13,8 @@ routes.post('/register', UserMasterController.UserRegister);
 
 routes.post('/registraevento', UserMasterController.RegistraEvento);
 
+routes.post('/agendausuario', UserMasterController.VerAgenda);
+
 routes.get('/', UserMasterController.MinhaAgenda);
 
 routes.get('/invites', UserMasterController.ShowInvites);
@@ -26,5 +28,7 @@ routes.get('/invitar', UserMasterController.ShowInvitar);
 routes.get('/inviteAccept/:id', UserMasterController.inviteAccept);
 
 routes.get('/inviteDeclined/:id', UserMasterController.inviteDecline);
+
+routes.get('/logout', UserMasterController.UserLogout);
 
 module.exports = routes;

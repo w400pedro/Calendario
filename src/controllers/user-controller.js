@@ -4,6 +4,17 @@ const { GroupDAO, agenda } = require('../models/group-models');
 
 class UserController {
 
+    async UserLogout(req, res){
+        const userLogado = req.session.user;
+        if (userLogado) {
+            req.session.user = ''
+            console.log('Deslogado');
+            res.redirect('/')
+        } else {
+            return res.send("Eii, você ainda não fez login. <br><a href='/'>Voltar</a>")
+        }
+    }
+
     async MinhaAgenda(req, res) {
         const existeusuariologado = req.session.user;
         if (existeusuariologado) {
@@ -15,12 +26,19 @@ class UserController {
         return res.redirect('/login.html')
     }
 
+    async VerAgenda(req, res) {
+        const { email } = req.body;
+        const id = await UserDAO.idByEmail(email);
+        const catchuserlogado = await UserDAO.UserValidationID(id);
+        const agenda = await GroupDAO.CatchAgenda(id);
+        return res.render('minhaagenda', { logado: catchuserlogado[0], agenda: agenda });
+    }
+
     async FazerAgendamento(req, res) {
         const existeusuariologado = req.session.user;
         if (existeusuariologado) {
             const usuariologado = req.session.user.id;
             const times = await GroupDAO.CatchTime(usuariologado);
-            console.log(times[0]);
             return res.render('agendar', {times: times})
         }
         return res.redirect('/login.html')
@@ -37,9 +55,6 @@ class UserController {
         if (existeusuariologado) {
             const usuariologado = req.session.user.id;
             const { time, descricao, data } = req.body;
-            console.log(time)
-            console.log(descricao)
-            console.log(data)
             const agendamento = new agenda(null, time, descricao, data, usuariologado);
             await GroupDAO.RegisterAgendamento(agendamento);
             return res.redirect('/')

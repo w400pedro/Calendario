@@ -5,8 +5,9 @@
 
     <h4><a href="/user/agendar">Agendar novo compromisso</a></h4>
 
-    <form action="/user/agendausuario" action="GET">
-        <label>Procurar pela agenda de outro usuário: </label><input type="email"  placeholder="Digite o email do usuário">
+    <form class="form-signin" action="/user/agendausuario" method="POST" name="form">
+        <label>Procurar pela agenda de outro usuário: </label>
+        <input type="email" id="email" name="email"  placeholder="Digite o email do usuário">
         <input type="submit" value="Procurar">
     </form>
 
