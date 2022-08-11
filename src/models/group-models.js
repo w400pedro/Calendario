@@ -35,6 +35,14 @@ class EMPRESA {
     }
 }
 
+class participantes {
+    constructor(id, usuario, time) {
+        this.id = id;
+        this.usuario = usuario;
+        this.time = time;
+    }
+}
+
 class GroupDAO {
     static async RegisterTime(criatime) {
         const sql = 'INSERT INTO public.time (nome, descricao, dono, empresa) VALUES ($1, $2, $3, $4);';
@@ -59,7 +67,7 @@ class GroupDAO {
     }
 
     static async RegisterMember(user, time) {
-        const sql = 'INSERT INTO public.participantes (usuario, time) VALUES ($1, $2);';
+        const sql = 'INSERT INTO public.convites (usuario, time) VALUES ($1, $2);';
         const values = [user, time];
         try {
             await db.query(sql, values);
@@ -104,5 +112,6 @@ module.exports = {
     time,
     EMPRESA,
     GroupDAO,
-    agenda 
+    agenda,
+    participantes
 };

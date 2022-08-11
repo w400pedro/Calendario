@@ -36,9 +36,14 @@ class UserDAO {
     }
 
     static async TeamUserInsert(user, time) {
-        const sql = "INSERT INTO public.participantes (usuario, time) VALUES ($1, $2)"
+        const sql = 'INSERT INTO public.participantes (usuario, time) VALUES ($1, $2);';
         const values = [user, time];
-        await db.query(sql, values);
+        try {
+            await db.query(sql, values);
+        } catch (error) {
+            console.log('NAO FOI POSSIVEL CADASTRAR O USUÁRIO');
+            console.log({ error });
+        }
     }
 
     static async TeamUserReject(user, time) {
@@ -60,7 +65,6 @@ class UserDAO {
         const usuario = result.rows[0];
         return usuario;
     }
-
 
     static async UserValidationID(usuario) {
         const sql = 'SELECT * FROM usuario where id = $1';
