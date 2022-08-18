@@ -19,12 +19,11 @@ class time {
 }
 
 class agenda {
-    constructor(id, time, descricao, dia, usuario){
+    constructor(id, time, descricao, dia){
         this.id = id;
         this.time = time;
         this.descricao = descricao;
         this.dia = dia;
-        this.usuario = usuario;
     }
 }
 
@@ -56,12 +55,12 @@ class GroupDAO {
     }
 
     static async RegisterAgendamento(agendamento) {
-        const sql = 'INSERT INTO public.agenda (time, descricao, dia, usuario) VALUES ($1, $2, $3, $4);';
-        const agendamentovalues = [agendamento.time, agendamento.descricao, agendamento.dia, agendamento.usuario];
+        const sql = 'INSERT INTO public.agenda (time, descricao, dia) VALUES ($1, $2, $3);';
+        const agendamentovalues = [agendamento.time, agendamento.descricao, agendamento.dia];
         try {
             await db.query(sql, agendamentovalues);
         } catch (error) {
-            console.log('NAO FOI POSSIVEL CADASTRAR O USUÁRIO');
+            console.log('NAO FOI POSSIVEL FAZER O AGENDAMENTO');
             console.log({ error });
         }
     }

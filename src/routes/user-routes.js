@@ -15,7 +15,7 @@ routes.post('/registraevento', UserMasterController.RegistraEvento);
 
 routes.post('/agendausuario', UserMasterController.VerAgenda);
 
-routes.get('/', UserMasterController.MinhaAgenda);
+routes.get('/', UserMasterController.FazerAgendamento);
 
 routes.get('/invites', UserMasterController.ShowInvites);
 

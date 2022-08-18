@@ -4,7 +4,7 @@ const { GroupDAO, agenda } = require('../models/group-models');
 
 class UserController {
 
-    async UserLogout(req, res){
+    async UserLogout(req, res) {
         const userLogado = req.session.user;
         if (userLogado) {
             req.session.user = ''
@@ -39,7 +39,7 @@ class UserController {
         if (existeusuariologado) {
             const usuariologado = req.session.user.id;
             const times = await GroupDAO.CatchTime(usuariologado);
-            return res.render('agendar', {times: times})
+            return res.render('agendar', { times: times })
         }
         return res.redirect('/login.html')
     }
@@ -50,12 +50,18 @@ class UserController {
         return res.render('calendario', { empresa: catchempresa })
     }
 
-    async RegistraEvento(req,res){
+    async RegistraEvento(req, res) {
         const existeusuariologado = req.session.user;
         if (existeusuariologado) {
-            const usuariologado = req.session.user.id;
             const { time, descricao, data } = req.body;
-            const agendamento = new agenda(null, time, descricao, data, usuariologado);
+            const datahoje = Date.now();
+            const hoje = new Date(datahoje);
+            const dataformato = new Date(data);
+            if (dataformato < hoje) return res.send('Data não pode ser no passado');
+            const diasemana = dataformato.getDay();
+            if(diasemana == 6 || diasemana == 0) return res.send("A data não pode ser em um fim de semana");
+
+            const agendamento = new agenda(null, time, descricao, data);
             await GroupDAO.RegisterAgendamento(agendamento);
             return res.redirect('/')
         }
