@@ -15,7 +15,7 @@ class GroupController {
         const result = await db.query(sql, timevalues);
         const info = result.rows;
         const timeid = info[0].id
-        await GroupDAO.RegisterMember(dono, timeid);
+        await UserDAO.TeamUserInsert(dono, timeid);
         return res.redirect('/user');
     }
 
