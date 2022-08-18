@@ -5,13 +5,7 @@
 
     <h4><a href="/user/agendar">Agendar novo compromisso</a></h4>
 
-    <form class="form-signin" action="/user/agendausuario" method="POST" name="form">
-        <label>Procurar pela agenda de outro time: </label>
-       <input type="text" id="email" name="text"  placeholder="Digite o nome do time"> <!-- AQUI O CARA DIGITA O NOME DO TIME  E VE A AGENDA (N PRECISA SELECT)  -->
-        <input type="submit" value="Procurar">
-    </form>
-
-        <h2>Seja bem-vindo a sua agenda <%=logado.nome%> <!--Aqui é a agenda do time k -->
+        <h2>Seja bem-vindo a agenda do time <%=logado.nome%> da empresa <%=empresa.nome%>
         </h2>
 <div class="compromissos">
         <h4>Seus dias de compromisso:

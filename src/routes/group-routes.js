@@ -6,7 +6,11 @@ const routes = require('./user-routes');
 
 const GroupMasterController = new GroupController();
 
+routes2.get('/visualizar/:id', GroupMasterController.showTimeAgenda);
+
 routes2.get('/time', GroupMasterController.showTime);
+
+routes2.get('/visualizar', GroupMasterController.ChooseAgenda);
 
 routes2.post('/register', GroupMasterController.RegisterTime);
 

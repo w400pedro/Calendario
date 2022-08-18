@@ -19,6 +19,11 @@ html {
     cursor: default;
 }
 
+.link-time{
+    margin-left: 41.5%;
+    font-size: 17.7px;
+}
+
 .role-h3{
     display: inline; 
     margin-left: 17%;

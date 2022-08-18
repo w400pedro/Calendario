@@ -87,9 +87,9 @@ class GroupDAO {
         }
     }
 
-    static async CatchAgenda(usuariologado) {
-        const sql = 'SELECT * FROM agenda where usuario = $1';
-        const result = await db.query(sql, [usuariologado]);
+    static async CatchAgenda(time) {
+        const sql = 'SELECT * FROM agenda where time = $1';
+        const result = await db.query(sql, [time]);
         const info = result.rows;
         return info;
     }
@@ -100,6 +100,20 @@ class GroupDAO {
         const result = await db.query(sql, values);
         const info = result.rows;
         console.log(info.rows);
+        return info;
+    }
+
+    static async CatchTimebyId(time) {
+        const sql = 'SELECT * from time where id = $1';
+        const result = await db.query(sql, [time]);
+        const info = result.rows;
+        return info;
+    }
+
+    static async CatchEmpresaByTime(empresaid){  
+        const sql = 'SELECT * from empresa where id = $1';
+        const result = await db.query(sql, [empresaid]);
+        const info = result.rows;
         return info;
     }
 

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<%-include('includes/head.ejs')%>
+
+    <body>
+        <%-include('includes/navbar.ejs')%>
+    <% times.forEach(time=> { %>
+        <a class="link-time" href="visualizar/<%=time.id%>">
+            <%=time.nome%>
+        </a>
+        <br>
+        <%})%>
+    </body>
+
+</html>
